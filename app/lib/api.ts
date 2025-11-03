@@ -1,4 +1,4 @@
-const BASE_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000/api";
+const BASE_URL = process.env.NEXT_PUBLIC_API_URL || "https://genvn-be.onrender.com";
 //eslint-disable-next-line @typescript-eslint/no-explicit-any
 export async function generatePaper(payload: any) {
   const res = await fetch(`${BASE_URL}/generate`, {
@@ -48,3 +48,4 @@ export async function exportPaper(paper: any, format: string) {
   a.click();
   window.URL.revokeObjectURL(url);
 }
+
