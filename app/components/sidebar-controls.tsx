@@ -3,7 +3,7 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { Sparkle, Lightning } from "@phosphor-icons/react";
+import { Ghost, Lightning } from "@phosphor-icons/react";
 import { UploadTeacherPack } from "../components/upload-teacher-pack";
 
 type Config = {
@@ -148,7 +148,7 @@ export function SidebarControls({
 
       <motion.div variants={itemVariants} className="space-y-2">
         <label className="text-sm font-semibold text-slate-700 flex items-center gap-2">
-          <Sparkle size={14} weight="fill" className="text-yellow-500" />
+          <Ghost size={14} weight="fill" className="text-yellow-500" />
           Chủ đề 
         </label>
         <input
@@ -191,13 +191,13 @@ export function SidebarControls({
               animate={{ rotate: 360 }}
               transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
             >
-              <Sparkle size={20} weight="fill" />
+              <Ghost size={20} weight="fill" />
             </motion.div>
             Đang sinh đề...
           </>
         ) : (
           <>
-            <Sparkle size={20} weight="fill" />
+            <Ghost size={20} weight="fill" />
             Sinh đề bằng AI
           </>
         )}

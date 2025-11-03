@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { Sparkle, FileText, Lightning, CheckCircle, ArrowRight } from "@phosphor-icons/react";
+import { HeartBreak, FileText, Lightning, CheckCircle, ArrowRight } from "@phosphor-icons/react";
 
 export default function HomePage() {
   const features = [
@@ -82,10 +82,10 @@ export default function HomePage() {
             {/* Badge */}
             <motion.div
               whileHover={{ scale: 1.05 }}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/80 backdrop-blur-sm border border-purple-200 shadow-lg"
+              className="mt-3  inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/80 backdrop-blur-sm border border-purple-200 shadow-lg"
             >
-              <Sparkle size={18} weight="fill" className="text-purple-600" />
-              <span className="text-sm font-semibold text-purple-700">
+              <HeartBreak size={18} weight="fill" className="text-purple-600" />
+              <span className="text-sm font-semibold text-purple-700 ">
                 Power Ranger 
               </span>
             </motion.div>
@@ -210,7 +210,7 @@ export default function HomePage() {
         }}
         className="absolute top-20 right-20 w-20 h-20 opacity-20"
       >
-        <Sparkle size={80} weight="duotone" className="text-purple-500" />
+        <HeartBreak size={80} weight="duotone" className="text-purple-500" />
       </motion.div>
 
       <motion.div

@@ -51,9 +51,9 @@ export function Topbar({
         </motion.div>
         <div>
           <h1 className="font-bold text-lg bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-            VN Primary Generator
+            Generator 
           </h1>
-          <p className="text-xs text-slate-500">Powered by AI</p>
+          <p className="text-xs text-slate-500">Powered by Vy 🐖</p>
         </div>
       </div>
 
