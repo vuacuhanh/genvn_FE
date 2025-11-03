@@ -1,7 +1,8 @@
 const BASE_URL = process.env.NEXT_PUBLIC_API_URL || "https://genvn-be.onrender.com";
-//eslint-disable-next-line @typescript-eslint/no-explicit-any
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export async function generatePaper(payload: any) {
-  const res = await fetch(`${BASE_URL}/generate`, {
+  const res = await fetch(`${BASE_URL}/api/generate`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(payload),
@@ -17,7 +18,7 @@ export async function uploadTeacherPack(file: File): Promise<{ summary: string }
   const form = new FormData();
   form.append("file", file);
 
-  const res = await fetch(`${BASE_URL}/upload-teacher-pack`, {
+  const res = await fetch(`${BASE_URL}/api/upload-teacher-pack`, {
     method: "POST",
     body: form,
   });
@@ -27,9 +28,10 @@ export async function uploadTeacherPack(file: File): Promise<{ summary: string }
   }
   return res.json();
 }
+
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export async function exportPaper(paper: any, format: string) {
-  const res = await fetch(`${BASE_URL}/export`, {
+  const res = await fetch(`${BASE_URL}/api/export`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ paper, format }),
@@ -39,6 +41,7 @@ export async function exportPaper(paper: any, format: string) {
     alert(err.detail || "Export failed");
     return;
   }
+
   // download
   const blob = await res.blob();
   const url = window.URL.createObjectURL(blob);
@@ -48,4 +51,3 @@ export async function exportPaper(paper: any, format: string) {
   a.click();
   window.URL.revokeObjectURL(url);
 }
-
