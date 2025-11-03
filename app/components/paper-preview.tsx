@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+// PaperPreview.tsx
 "use client";
 
 import React from "react";
@@ -30,7 +31,7 @@ export function PaperPreview({ paper, loading }: { paper: any; loading?: boolean
           Chưa có đề thi
         </h3>
         <p className="text-slate-400">
-          Chọn cấu hình bên trái và bấm Sinh đề bằng AI để tạo đề kiểm tra tiếng Việt.
+          Tạo bài
         </p>
       </motion.div>
     );
@@ -57,7 +58,7 @@ export function PaperPreview({ paper, loading }: { paper: any; loading?: boolean
               Lớp {paper.meta?.grade} • {paper.meta?.difficulty}
             </p>
             {paper.meta?.theme && (
-              <p className="text-slate-600 mt-1">📚 Chủ đề: {paper.meta.theme}</p>
+              <p className="text-slate-600 mt-1">Chủ đề: {paper.meta.theme}</p>
             )}
           </div>
           <div className="glass-effect px-4 py-2 rounded-xl border border-purple-200">
@@ -69,7 +70,7 @@ export function PaperPreview({ paper, loading }: { paper: any; loading?: boolean
         </div>
       </motion.div>
 
-    
+      {/* Questions */}
       {paper.items?.map((item: any, idx: number) => (
         <motion.div
           key={item.id}
@@ -132,26 +133,59 @@ export function PaperPreview({ paper, loading }: { paper: any; loading?: boolean
       <motion.div
         initial={{ y: 20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
-        className="glass-effect rounded-3xl p-6 border-2 border-green-100"
+        className="glass-effect rounded-3xl p-8 border-2 border-emerald-100 bg-gradient-to-br from-emerald-50/50 to-green-50/30"
       >
-        <h3 className="text-xl font-bold text-green-700 mb-4 flex items-center gap-2">
-          <Star size={24} weight="fill" />
-          Đáp án
-        </h3>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-          {paper.answer_sheet?.map((ans: any) => (
-            <div
+        <div className="flex items-center gap-3 mb-6">
+          <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-emerald-500 to-green-600 flex items-center justify-center shadow-lg">
+            <Star size={24} weight="fill" className="text-white" />
+          </div>
+          <div>
+            <h3 className="text-2xl font-bold text-emerald-800">Đáp án</h3>
+            <p className="text-sm text-emerald-600">Tổng {paper.answer_sheet?.length || 0} câu hỏi</p>
+          </div>
+        </div>
+
+        {/* Answer List */}
+        <div className="space-y-2">
+          {paper.answer_sheet?.map((ans: any, idx: number) => (
+            <motion.div
               key={ans.id}
-              className="flex justify-between items-center bg-green-50 border-2 border-green-200 rounded-xl px-4 py-3"
+              initial={{ x: -10, opacity: 0 }}
+              animate={{ x: 0, opacity: 1 }}
+              transition={{ delay: idx * 0.05 }}
+              whileHover={{ x: 4, scale: 1.01 }}
+              className="flex items-center justify-between p-4 bg-white/80 backdrop-blur-sm border-2 border-emerald-200/50 rounded-xl hover:border-emerald-300 hover:shadow-lg transition-all cursor-pointer group"
             >
-              <span className="font-semibold text-green-700">Câu {ans.id}</span>
-              <span className="font-bold text-green-600 text-lg">{String(ans.key)}</span>
-            </div>
+              <div className="flex items-center gap-4">
+                <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-emerald-100 to-green-100 flex items-center justify-center font-bold text-emerald-700 group-hover:scale-110 transition-transform">
+                  {ans.id}
+                </div>
+                <span className="text-slate-600 font-medium">Câu {ans.id}</span>
+              </div>
+              
+              <div className="flex items-center gap-3">
+                <span className="text-sm text-slate-500 hidden sm:inline">Đáp án:</span>
+                <div className="px-5 py-2 rounded-lg bg-gradient-to-r from-emerald-500 to-green-600 text-white font-bold text-lg shadow-md group-hover:shadow-xl group-hover:scale-105 transition-all">
+                  {String(ans.key)}
+                </div>
+              </div>
+            </motion.div>
           ))}
+        </div>
+
+        {/* Summary Footer */}
+        <div className="mt-6 pt-6 border-t-2 border-emerald-200/50">
+          <div className="flex items-center justify-between text-sm">
+            <span className="text-emerald-700 font-medium">
+              💡 Lưu ý: Kiểm tra kỹ đáp án trước khi in đề
+            </span>
+            <span className="px-3 py-1 rounded-full bg-emerald-100 text-emerald-700 font-semibold">
+              {paper.answer_sheet?.length || 0}/{paper.items?.length || 0} câu
+            </span>
+          </div>
         </div>
       </motion.div>
     </motion.div>
   );
 }
-
 export default PaperPreview;
