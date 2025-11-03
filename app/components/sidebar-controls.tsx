@@ -149,7 +149,7 @@ export function SidebarControls({
       <motion.div variants={itemVariants} className="space-y-2">
         <label className="text-sm font-semibold text-slate-700 flex items-center gap-2">
           <Sparkle size={14} weight="fill" className="text-yellow-500" />
-          Chủ đề cho bài văn
+          Chủ đề 
         </label>
         <input
           type="text"
